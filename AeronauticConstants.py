@@ -25,9 +25,9 @@ class AeronauticConstants:
     M_TO_FT = 1 / FT_TO_M
     KTS_TO_MPS = 0.514444
     MPS_TO_KTS = 1 / KTS_TO_MPS
-    NM_TO_KM = 1852
+    NM_TO_KM = 1.852
     KM_TO_NM = 1 / NM_TO_KM
-
+    H_TO_S = 3600
 
     # Air viscosity (Sutherland)
     MU_0 = 1.7894e-5
@@ -41,3 +41,18 @@ class AeronauticConstants:
     def mu(cls, T):
         """Dynamic viscosity at temperature T [K] using Sutherland's law"""
         return cls.MU_0 * (T / cls.T_0)**1.5 * (cls.T_0 + cls.T_S) / (T + cls.T_S)
+
+    @classmethod
+    def c_sound(cls, T):
+        """Sound speed for air at a given temperature"""
+        return (cls.GAMMA * cls.R * T) ** (1/2)
+    
+    @classmethod
+    def T_isa(cls, z_isa):
+        """ISA temperature at a given altitude """
+        if z_isa <= 11000:
+            T = cls.T_0 + cls.L_TROP * z_isa
+        else:
+            T = 216.65
+        return T
+
