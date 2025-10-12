@@ -28,6 +28,10 @@ class AeronauticConstants:
     NM_TO_KM = 1.852
     KM_TO_NM = 1 / NM_TO_KM
     H_TO_S = 3600
+    S_TO_H = 1 / H_TO_S
+    KG_TO_LB = 2.20462
+    LB_TO_KG = 1 / KG_TO_LB
+
 
     # Air viscosity (Sutherland)
     MU_0 = 1.7894e-5
